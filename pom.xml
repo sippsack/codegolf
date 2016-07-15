@@ -63,11 +63,63 @@
 	</dependencies>
 
 	<build>
-		<plugins>
+        <plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.15.9</version>
+                <configuration>
+                    <!-- dockerHost and certPath are grabbed from environment variables -->
+                    <useColor>true</useColor>
+                    <images>
+                        <image>
+                            <name>%g/%a</name>
+                            <build>
+                                <from>java:8</from>
+                                <assembly>
+                                    <basedir>/app</basedir>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <entryPoint>
+                                    <shell>java -jar /app/${project.build.finalName}.jar</shell>
+                                </entryPoint>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>8080:8080</port>
+                                </ports>
+                                <wait>
+                                    <http>
+                                        <url>http://${docker.host.address}:8080/management/health</url>
+                                    </http>
+                                    <time>30000</time>
+                                </wait>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 
