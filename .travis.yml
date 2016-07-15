@@ -8,7 +8,7 @@ services:
   - docker
 
 script:
-  - ./mvnw test -B
+  - ./mvnw verify -B
   - ./mvnw -Ddocker.username=$DOCKER_USERNAME -Ddocker.password=$DOCKER_PASSWORD docker:push
 
 cache:
