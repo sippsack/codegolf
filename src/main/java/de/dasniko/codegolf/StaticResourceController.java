@@ -1,4 +1,4 @@
-package dasniko;
+package de.dasniko.codegolf;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
