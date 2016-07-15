@@ -8,5 +8,5 @@ services:
   - docker
 
 script:
-  - mvnw test -B
-  - mvnw -Ddocker.username=$DOCKER_USERNAME -Ddocker.password=$DOCKER_PASSWORD docker:push
+  - ./mvnw test -B
+  - ./mvnw -Ddocker.username=$DOCKER_USERNAME -Ddocker.password=$DOCKER_PASSWORD docker:push
