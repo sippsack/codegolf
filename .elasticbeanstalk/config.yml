@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: codegolf
+global:
+  application_name: codegolf
+  default_ec2_keyname: dasniko
+  default_platform: 64bit Amazon Linux 2016.03 v2.2.0 running Docker 1.11.2
+  default_region: eu-west-1
+  profile: null
+  sc: git

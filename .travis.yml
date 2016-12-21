@@ -12,8 +12,8 @@ before_script:
   - export PATH=$PATH:$HOME/.local/bin
 
 script:
-  - ./mvnw verify -B
-  - ./mvnw -Ddocker.username=$DOCKER_USERNAME -Ddocker.password=$DOCKER_PASSWORD docker:push
+  - ./mvnw package -B
+  - ./mvnw -Ddocker.username=$DOCKER_USERNAME -Ddocker.password=$DOCKER_PASSWORD docker:push -B
 
 cache:
   directories:

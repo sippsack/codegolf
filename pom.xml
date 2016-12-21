@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.0.RC1</version>
+		<version>1.4.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.6</version>
+			<version>1.16.10</version>
             <scope>provided</scope>
 		</dependency>
         <dependency>
@@ -69,28 +69,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
-                <executions>
-                    <execution>
-                        <id>integration-tests</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.15.9</version>
+                <version>0.17.2</version>
                 <configuration>
                     <!-- dockerHost and certPath are grabbed from environment variables -->
                     <useColor>true</useColor>
@@ -98,7 +79,7 @@
                         <image>
                             <name>%g/%a</name>
                             <build>
-                                <from>java:8</from>
+                                <from>java:8-alpine</from>
                                 <assembly>
                                     <basedir>/app</basedir>
                                     <descriptorRef>artifact</descriptorRef>
@@ -111,92 +92,20 @@
                                     <tag>${project.version}</tag>
                                 </tags>
                             </build>
-                            <run>
-                                <ports>
-                                    <port>8080:8080</port>
-                                </ports>
-                                <wait>
-                                    <http>
-                                        <url>http://${docker.host.address}:8080/management/health</url>
-                                    </http>
-                                    <time>30000</time>
-                                </wait>
-                            </run>
                         </image>
                     </images>
                 </configuration>
                 <executions>
                     <execution>
                         <id>start</id>
-                        <phase>pre-integration-test</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>build</goal>
-                            <goal>start</goal>
                         </goals>
-                        <configuration>
-                            <skip>${skipTests}</skip>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${skipTests}</skip>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
 		</plugins>
 	</build>
-
-    <repositories>
-        <repository>
-            <id>spring-snapshots</id>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-releases</id>
-            <url>http://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-releases</id>
-            <url>http://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
