@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.10</version>
+			<version>1.16.12</version>
             <scope>provided</scope>
 		</dependency>
         <dependency>
@@ -71,7 +71,7 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.17.2</version>
+                <version>0.18.1</version>
                 <configuration>
                     <!-- dockerHost and certPath are grabbed from environment variables -->
                     <useColor>true</useColor>

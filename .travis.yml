@@ -7,10 +7,6 @@ sudo: required
 services:
   - docker
 
-before_script:
-  - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin
-
 script:
   - ./mvnw package -B
   - ./mvnw -Ddocker.username=$DOCKER_USERNAME -Ddocker.password=$DOCKER_PASSWORD docker:push -B
