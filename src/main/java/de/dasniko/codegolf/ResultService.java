@@ -2,10 +2,10 @@ package de.dasniko.codegolf;
 
 import com.amazonaws.services.s3.AmazonS3;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Niko Köbler, http://www.n-k.de, @dasniko
@@ -25,8 +25,8 @@ public class ResultService {
     }
 
     public List<ResultEntry> getResultlist() {
-        Sort sort = new Sort("countChars");
-        return (List<ResultEntry>) resultEntryRepository.findAll(sort);
+        List<ResultEntry> entries = (List<ResultEntry>) resultEntryRepository.findAll();
+        return entries.stream().sorted((o1, o2) -> o2.getCountChars() - o1.getCountChars()).collect(Collectors.toList());
     }
 
     public void updateResultlist(String username, int count) {

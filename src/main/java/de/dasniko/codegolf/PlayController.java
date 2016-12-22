@@ -25,7 +25,7 @@ public class PlayController {
         return playService.play(username, sourceCode);
     }
 
-    @RequestMapping("results")
+    @RequestMapping(value = "results", method = RequestMethod.GET)
     public List<ResultEntry> getResults() {
         return resultService.getResultlist();
     }
