@@ -20,11 +20,15 @@
                 <li><a href="/rules">Rules</a></li>
                 <li><a href="/play">Play</a></li>
                 <li><a href="/results">Results</a></li>
+                <li th:if="${#httpServletRequest.userPrincipal}">
+                    <a href="/logout"><span th:text="${#httpServletRequest.userPrincipal.name}"></span></a>
+                </li>
             </ul>
             <ul class="side-nav" id="mobile-nav">
                 <li><a href="/rules">Rules</a></li>
                 <li><a href="/play">Play</a></li>
                 <li><a href="/results">Results</a></li>
+                <li th:if="${#httpServletRequest.userPrincipal}"><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </nav>

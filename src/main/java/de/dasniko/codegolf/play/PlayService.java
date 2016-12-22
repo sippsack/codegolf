@@ -34,8 +34,9 @@ public class PlayService {
     PlayResult play(PlayRequest playRequest) {
         String username = playRequest.getUsername();
         String sourceCode = playRequest.getSourcecode();
+        String packageName = username.replaceAll("\\W", "");
 
-        File sourceFile = saveSource(username, sourceCode);
+        File sourceFile = saveSource(packageName, sourceCode);
 
         try {
             compile(sourceFile);
@@ -45,7 +46,7 @@ public class PlayService {
                     .build();
         }
 
-        String result = run(username);
+        String result = run(packageName);
 
         boolean success = EXPECTED_RESULT.equals(result);
 

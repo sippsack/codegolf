@@ -17,12 +17,6 @@
             <form class="col s12" th:action="@{/play}" th:object="${playRequest}" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="username" type="text" th:field="*{username}"/>
-                        <label for="username">Username</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
                         <pre>public class Codegolf {
   public String play() {
     // your code goes here:

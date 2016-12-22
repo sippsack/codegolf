@@ -7,6 +7,6 @@ import lombok.Data;
  */
 @Data
 public class PlayRequest {
-    private String username = "dasniko";
+    private String username;
     private String sourcecode = "return \"Hello World\";";
 }
