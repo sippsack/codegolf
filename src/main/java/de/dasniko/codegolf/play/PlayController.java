@@ -1,5 +1,6 @@
 package de.dasniko.codegolf.play;
 
+import de.dasniko.codegolf.User;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.AccessToken;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class PlayController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String play(PlayRequest playRequest, Model model) throws Exception {
-        playRequest.setUsername(accessToken.getPreferredUsername());
+        playRequest.setUser(User.from(accessToken));
         PlayResult result = playService.play(playRequest);
         model.addAttribute(playRequest);
         model.addAttribute(result);

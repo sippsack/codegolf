@@ -9,7 +9,11 @@
     <div class="container section">
         <h4>All Results</h4>
         <ol class="collection">
-            <li th:each="e : ${resultEntryList}" th:text="${e.username + ' (' + e.countChars + ')'}" class="collection-item"></li>
+            <li th:each="e : ${resultEntryList}" class="collection-item avatar">
+                <img th:src="${beans.Gravatar.imageUrlFrom(e.username)}" class="circle"/>
+                <span th:text="${e.username}" class="title"></span>
+                <p th:text="${e.countChars + ' characters'}"></p>
+            </li>
         </ol>
     </div>
 </main>

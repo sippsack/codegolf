@@ -1,5 +1,6 @@
 package de.dasniko.codegolf.play;
 
+import de.dasniko.codegolf.User;
 import lombok.Data;
 
 /**
@@ -7,6 +8,6 @@ import lombok.Data;
  */
 @Data
 public class PlayRequest {
-    private String username;
+    private User user;
     private String sourcecode = "return \"Hello World\";";
 }

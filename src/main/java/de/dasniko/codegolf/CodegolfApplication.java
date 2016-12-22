@@ -20,6 +20,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author Niko Köbler, http://www.n-k.de, @dasniko
+ */
 @SpringBootApplication
 @EnableDynamoDBRepositories
 public class CodegolfApplication {

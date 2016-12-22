@@ -1,5 +1,6 @@
 package de.dasniko.codegolf.play;
 
+import de.dasniko.codegolf.User;
 import de.dasniko.codegolf.results.ResultService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -32,9 +33,9 @@ public class PlayService {
     private final ResultService resultService;
 
     PlayResult play(PlayRequest playRequest) {
-        String username = playRequest.getUsername();
+        User user = playRequest.getUser();
         String sourceCode = playRequest.getSourcecode();
-        String packageName = username.replaceAll("\\W", "");
+        String packageName = user.getUsername().replaceAll("\\W", "");
 
         File sourceFile = saveSource(packageName, sourceCode);
 
@@ -53,8 +54,8 @@ public class PlayService {
         int numChars = countChars(sourceCode);
 
         if (success) {
-            resultService.saveSourcecode(username, sourceCode);
-            resultService.updateResultlist(username, numChars);
+            resultService.saveSourcecode(user, sourceCode);
+            resultService.updateResultlist(user, numChars);
         }
 
         return PlayResult.builder()

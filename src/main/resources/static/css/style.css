@@ -27,3 +27,8 @@ main {
     background-color: rgba(26, 163, 177, 0.2);
     border: none;
 }
+
+img.gravatar {
+    height: 50px;
+    vertical-align: middle;
+}

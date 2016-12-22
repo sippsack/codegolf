@@ -21,7 +21,10 @@
                 <li><a href="/play">Play</a></li>
                 <li><a href="/results">Results</a></li>
                 <li th:if="${#httpServletRequest.userPrincipal}">
-                    <a href="/logout"><span th:text="${#httpServletRequest.userPrincipal.name}"></span></a>
+                    <a href="/logout">
+                        <span th:text="${#httpServletRequest.userPrincipal.name}"></span>
+                        <img class="circle responsive-img gravatar" th:src="${beans.Gravatar.imageUrl()}"/>
+                    </a>
                 </li>
             </ul>
             <ul class="side-nav" id="mobile-nav">

@@ -18,7 +18,13 @@ import lombok.NoArgsConstructor;
 @DynamoDBTable(tableName = "CodegolfResult")
 public class ResultEntry {
     @DynamoDBHashKey
-    private String username;;
+    private String username;
+    @DynamoDBAttribute
+    private String email;
+    @DynamoDBAttribute
+    private String firstName;
+    @DynamoDBAttribute
+    private String lastName;
     @DynamoDBAttribute
     private int countChars;
 }
