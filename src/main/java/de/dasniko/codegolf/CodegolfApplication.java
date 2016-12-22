@@ -7,7 +7,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +14,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableDynamoDBRepositories
 public class CodegolfApplication {
-
-    @Value("${amazon.dynamodb.endpoint?:}")
-    private String amazonDynamoDBEndpoint;
 
     public static void main(String[] args) {
         SpringApplication.run(CodegolfApplication.class, args);
@@ -32,11 +28,6 @@ public class CodegolfApplication {
     public AmazonDynamoDB amazonDynamoDB() {
         AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient();
         amazonDynamoDB.setRegion(Region.getRegion(Regions.EU_WEST_1));
-
-        if (null != amazonDynamoDBEndpoint && !amazonDynamoDBEndpoint.isEmpty()) {
-            amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
-        }
-
         return amazonDynamoDB;
     }
 }
