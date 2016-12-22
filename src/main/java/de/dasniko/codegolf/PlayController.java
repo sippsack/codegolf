@@ -1,33 +1,33 @@
 package de.dasniko.codegolf;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author Niko Köbler, http://www.n-k.de, @dasniko
  */
-@RestController
+@Controller
 @RequestMapping("play")
 @RequiredArgsConstructor
 public class PlayController {
 
     private final PlayService playService;
-    private final ResultService resultService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public CodegolfResult play(@RequestBody String sourceCode) throws Exception {
-        String username = "dasniko";
-        return playService.play(username, sourceCode);
+    @RequestMapping(method = RequestMethod.GET)
+    public String start() {
+        return "play";
     }
 
-    @RequestMapping(value = "results", method = RequestMethod.GET)
-    public List<ResultEntry> getResults() {
-        return resultService.getResultlist();
+    @RequestMapping(method = RequestMethod.POST)
+    public String play(@RequestBody String sourceCode, Model model) throws Exception {
+        String username = "dasniko";
+        CodegolfResult result = playService.play(username, sourceCode);
+        model.addAttribute(result);
+        return "result";
     }
 
 }
