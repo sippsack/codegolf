@@ -1,4 +1,4 @@
-package de.dasniko.codegolf;
+package de.dasniko.codegolf.results;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

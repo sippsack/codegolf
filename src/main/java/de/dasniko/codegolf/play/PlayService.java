@@ -1,13 +1,15 @@
-package de.dasniko.codegolf;
+package de.dasniko.codegolf.play;
 
+import de.dasniko.codegolf.results.ResultService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -22,18 +24,26 @@ import java.nio.file.Files;
 public class PlayService {
 
     private static final String CLASSNAME = "Codegolf";
-    private static final String METHODNAME = "test";
+    private static final String METHODNAME = "play";
     private static final String EXPECTED_RESULT = "Hello World";
 
     private final File root = new File(System.getProperty("java.io.tmpdir"));
 
     private final ResultService resultService;
 
-    @RequestMapping
-    public CodegolfResult play(String username, String sourceCode) throws Exception {
+    PlayResult play(PlayRequest playRequest) {
+        String username = playRequest.getUsername();
+        String sourceCode = playRequest.getSourcecode();
+
         File sourceFile = saveSource(username, sourceCode);
 
-        compile(sourceFile);
+        try {
+            compile(sourceFile);
+        } catch (RuntimeException e) {
+            return PlayResult.builder()
+                    .result(e.getMessage())
+                    .build();
+        }
 
         String result = run(username);
 
@@ -46,7 +56,7 @@ public class PlayService {
             resultService.updateResultlist(username, numChars);
         }
 
-        return CodegolfResult.builder()
+        return PlayResult.builder()
                 .success(success)
                 .result(result)
                 .count(numChars)
@@ -64,7 +74,11 @@ public class PlayService {
 
     private void compile(File sourceFile) {
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        compiler.run(null, null, null, sourceFile.getPath());
+        OutputStream outputStream = new ByteArrayOutputStream();
+        int compileResult = compiler.run(null, outputStream, outputStream, sourceFile.getPath());
+        if (compileResult != 0) {
+            throw new RuntimeException(outputStream.toString());
+        }
     }
 
     @SneakyThrows

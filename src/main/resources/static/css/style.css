@@ -15,3 +15,15 @@ main {
 .easternblue-text {
     color: #1AA3B1 !important;
 }
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+.enter-source {
+    background-color: rgba(26, 163, 177, 0.2);
+    border: none;
+}

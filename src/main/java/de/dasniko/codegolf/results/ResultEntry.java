@@ -1,4 +1,4 @@
-package de.dasniko.codegolf;
+package de.dasniko.codegolf.results;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

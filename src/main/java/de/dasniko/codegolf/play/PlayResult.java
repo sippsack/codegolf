@@ -1,4 +1,4 @@
-package de.dasniko.codegolf;
+package de.dasniko.codegolf.play;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CodegolfResult {
+public class PlayResult {
     private boolean success;
     private String result;
     private int count;
-    private int rank;
 }

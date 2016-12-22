@@ -1,4 +1,4 @@
-package de.dasniko.codegolf;
+package de.dasniko.codegolf.results;
 
 import com.amazonaws.services.s3.AmazonS3;
 import lombok.RequiredArgsConstructor;
