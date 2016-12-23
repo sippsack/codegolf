@@ -18,3 +18,8 @@ keycloak:
           - /play
         authRoles:
           - user
+      - name: admin
+        patterns:
+          - /management/*
+        authRoles:
+          - admin

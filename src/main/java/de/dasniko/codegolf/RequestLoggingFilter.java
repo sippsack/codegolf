@@ -8,21 +8,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
 
 @Slf4j
 public class RequestLoggingFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        log.info("==================================================");
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String headerName =  headerNames.nextElement();
-            String headerValue = request.getHeader(headerName);
-            log.info(headerName + " = " + headerValue);
+        String requestURI = request.getRequestURI();
+        if (requestURI.startsWith("/webjars") || requestURI.startsWith("/css") || requestURI.startsWith("/js")) {
+            filterChain.doFilter(request, response);
+        } else {
+            long start = System.currentTimeMillis();
+
+            filterChain.doFilter(request, response);
+
+            if (request.getQueryString() != null) {
+                requestURI += "?" + request.getQueryString();
+            }
+            int status = response.getStatus();
+            String msg = requestURI + " " + status + " took " + (System.currentTimeMillis() - start) + "ms";
+            if (status >= 400 && status <= 499) {
+                log.error(msg);
+            } else if (status >= 500) {
+                log.warn(msg);
+            } else {
+                log.info(msg);
+            }
         }
-        log.info("==================================================");
-        filterChain.doFilter(request, response);
     }
 }
