@@ -7,46 +7,44 @@
 
 <main>
     <div class="container section">
-        <h3>Hello, World!</h3>
+        <h3 th:text="#{index.title}"></h3>
         <div class="row">
             <div class="col s12">
-                <p class="flow-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+                <p class="flow-text" th:text="#{index.text}"></p>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center easternblue-text">
-                        <i class="material-icons">flash_on</i>
+                        <i class="material-icons" th:text="#{index.teaser1.icon}"></i>
                     </h2>
-                    <h5 class="center">Lorem ipsum dolor</h5>
-                    <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h5 class="center" th:text="#{index.teaser1.title}"></h5>
+                    <p class="light" th:text="#{index.teaser1.text}"></p>
                 </div>
             </div>
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center easternblue-text">
-                        <i class="material-icons">flash_on</i>
+                        <i class="material-icons" th:text="#{index.teaser2.icon}"></i>
                     </h2>
-                    <h5 class="center">Lorem ipsum dolor</h5>
-                    <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h5 class="center" th:text="#{index.teaser2.title}"></h5>
+                    <p class="light" th:text="#{index.teaser2.text}"></p>
                 </div>
             </div>
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center easternblue-text">
-                        <i class="material-icons">flash_on</i>
+                        <i class="material-icons" th:text="#{index.teaser3.icon}"></i>
                     </h2>
-                    <h5 class="center">Lorem ipsum dolor</h5>
-                    <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h5 class="center" th:text="#{index.teaser3.title}"></h5>
+                    <p class="light" th:text="#{index.teaser3.text}"></p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s12 center">
-                <button class="btn btn-large wave-effect waves-light easternblue" style="margin-top: 20px; padding: 0 10rem;">Let's get startet!</button>
+                <button th:text="#{index.start}" class="btn btn-large wave-effect waves-light easternblue" style="margin-top: 20px; padding: 0 10rem;"></button>
             </div>
         </div>
     </div>

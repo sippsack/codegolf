@@ -23,7 +23,7 @@ public class User {
         return User.builder()
                 .username(accessToken.getPreferredUsername())
                 .email(accessToken.getEmail())
-                .firstName(accessToken.getFamilyName())
+                .firstName(accessToken.getGivenName())
                 .lastName(accessToken.getFamilyName())
                 .build();
     }

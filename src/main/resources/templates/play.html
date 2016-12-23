@@ -7,10 +7,10 @@
 
 <main>
     <div class="container section">
-        <h4>Play Golf</h4>
+        <h4 th:text="#{play.title}"></h4>
         <div class="row">
             <div class="col s12">
-                Birdie? Hole-in-one? ...
+                <p th:text="#{play.text}"></p>
             </div>
         </div>
         <div class="row">
@@ -20,7 +20,7 @@
                         <pre>public class Codegolf {
   public String play() {
     // your code goes here:
-    <textarea th:field="*{sourcecode}" class="enter-source"></textarea>
+    <textarea th:field="*{sourcecode}" class="sourcebox"></textarea>
   }
 }</pre>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <button class="btn waves-effect waves-light easternblue" type="submit">
-                            Submit
+                            <span th:text="#{play.submit}"></span>
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -37,22 +37,25 @@
         </div>
         <div th:if="${playResult != null}" class="row">
             <div class="col s12" th:if="${playResult.success}">
-                <h5>PAR!</h5>
-                <p>Congrats, you made it!</p>
-                <p>
-                    Your submitted source code has <span th:text="${playResult.count}"></span> characters (whitespace removed).
-                </p>
-                <a href="/results" class="easternblue-text">See all results</a>
+                <h5 th:text="#{play.success.title}"></h5>
+                <p th:text="#{play.success.text}"></p>
+                <p th:text="#{play.success.message(${playResult.count})}"></p>
+                <a href="/results" class="easternblue-text" th:utext="#{play.success.link}"></a>
             </div>
             <div class="col s12" th:if="${!playResult.success}">
-                <h5 class="red-text">Oh no!</h5>
-                <p>Something went wrong...</p>
+                <h5 class="red-text" th:text="#{play.failure.title}"></h5>
+                <p th:text="#{play.failure.text}"></p>
                 <pre th:text="${playResult.result}"></pre>
+                <p th:text="#{play.failure.message}"></p>
             </div>
         </div>
     </div>
 </main>
 
 <footer th:replace="fragments/master::footer"></footer>
+<script type="text/javascript" src="/webjars/autosize/dist/autosize.min.js"></script>
+<script type="text/javascript">
+    autosize($('textarea'));
+</script>
 </body>
 </html>

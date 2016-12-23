@@ -12,26 +12,24 @@
 <div class="navbar-fixed" th:fragment="navbar">
     <nav class="easternblue">
         <div class="nav-wrapper container">
-            <a href="/" class="brand-logo">
-                Code Golf
-            </a>
+            <a href="/" class="brand-logo" th:text="#{nav.brand}"></a>
             <a href="#!" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/rules">Rules</a></li>
-                <li><a href="/play">Play</a></li>
-                <li><a href="/results">Results</a></li>
+                <li th:class="${#httpServletRequest.getServletPath() == '/rules' ? 'active' : ''}"><a href="/rules" th:text="#{nav.rules}"></a></li>
+                <li th:class="${#httpServletRequest.getServletPath() == '/play' ? 'active' : ''}"><a href="/play" th:text="#{nav.play}"></a></li>
+                <li th:class="${#httpServletRequest.getServletPath() == '/results' ? 'active' : ''}"><a href="/results" th:text="#{nav.results}"></a></li>
                 <li th:if="${#httpServletRequest.userPrincipal}">
                     <a href="/logout">
-                        <span th:text="${#httpServletRequest.userPrincipal.name}"></span>
+                        <span th:text="${'Logout ' + #httpServletRequest.userPrincipal.name}"></span>
                         <img class="circle responsive-img gravatar" th:src="${beans.Gravatar.imageUrl()}"/>
                     </a>
                 </li>
             </ul>
             <ul class="side-nav" id="mobile-nav">
-                <li><a href="/rules">Rules</a></li>
-                <li><a href="/play">Play</a></li>
-                <li><a href="/results">Results</a></li>
-                <li th:if="${#httpServletRequest.userPrincipal}"><a href="/logout">Logout</a></li>
+                <li><a href="/rules" th:text="#{nav.rules}"></a></li>
+                <li><a href="/play" th:text="#{nav.play}"></a></li>
+                <li><a href="/results" th:text="#{nav.results}"></a></li>
+                <li th:if="${#httpServletRequest.userPrincipal}"><a href="/logout" th:text="${'Logout ' + #httpServletRequest.userPrincipal.name}"></a></li>
             </ul>
         </div>
     </nav>
@@ -41,7 +39,7 @@
     <div class="footer-copyright">
         <div class="container">
             © 2016 Niko Köbler
-            <a class="grey-text text-lighten-4 right" href="mailto:codegolf@n-k.de">Contact</a>
+            <a class="grey-text text-lighten-4 right" href="mailto:codegolf@n-k.de" th:text="#{nav.contact}"></a>
         </div>
     </div>
 

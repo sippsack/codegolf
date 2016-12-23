@@ -17,8 +17,11 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 
 /**
  * @author Niko Köbler, http://www.n-k.de, @dasniko
@@ -29,6 +32,13 @@ public class CodegolfApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CodegolfApplication.class, args);
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.ENGLISH);
+        return localeResolver;
     }
 
     @Bean

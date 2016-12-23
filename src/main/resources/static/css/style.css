@@ -23,12 +23,18 @@ main {
     font-size: inherit;
 }
 
-.enter-source {
+.sourcebox {
     background-color: rgba(26, 163, 177, 0.2);
     border: none;
+    width: calc(100% - 50px);
+    resize: none !important;
+}
+.sourcebox:focus {
+    outline: none;
 }
 
 img.gravatar {
-    height: 50px;
+    height: 42px;
     vertical-align: middle;
+    margin-left: 5px;
 }
