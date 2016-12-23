@@ -4,6 +4,7 @@ import de.dasniko.codegolf.User;
 import de.dasniko.codegolf.results.ResultService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.junit.Assert;
 import org.springframework.stereotype.Service;
 
 import javax.tools.JavaCompiler;
@@ -49,13 +50,16 @@ public class PlayService {
 
         String result = run(packageName);
 
-        boolean success = EXPECTED_RESULT.equals(result);
-
         int numChars = countChars(sourceCode);
 
-        if (success) {
+        boolean success = false;
+        try {
+            Assert.assertEquals(EXPECTED_RESULT, result);
+            success = true;
             resultService.saveSourcecode(user, sourceCode);
             resultService.updateResultlist(user, numChars);
+        } catch (AssertionError e) {
+            result = e.getMessage();
         }
 
         return PlayResult.builder()
