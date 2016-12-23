@@ -22,11 +22,13 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
 
+            long duration = System.currentTimeMillis() - start;
+
             if (request.getQueryString() != null) {
                 requestURI += "?" + request.getQueryString();
             }
             int status = response.getStatus();
-            String msg = requestURI + " " + status + " took " + (System.currentTimeMillis() - start) + "ms";
+            String msg = status + " " + request.getMethod() + " " + requestURI + " (" + duration + "ms)";
             if (status >= 400 && status <= 499) {
                 log.error(msg);
             } else if (status >= 500) {
