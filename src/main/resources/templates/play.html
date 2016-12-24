@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="row">
-            <form class="col s12" th:action="@{/play}" th:object="${playRequest}" method="post">
+            <form class="col s12" th:action="@{/play}" th:object="${playRequest}" method="post" onsubmit="lockScreen()">
                 <div class="row">
                     <div class="input-field col s12">
                         <pre>public class Codegolf {
@@ -51,6 +51,8 @@
         </div>
     </div>
 </main>
+
+<div th:replace="fragments/master::lock"></div>
 
 <footer th:replace="fragments/master::footer"></footer>
 <script type="text/javascript" src="/webjars/autosize/dist/autosize.min.js"></script>

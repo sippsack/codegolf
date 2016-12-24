@@ -30,9 +30,9 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
             int status = response.getStatus();
             String msg = status + " " + request.getMethod() + " " + requestURI + " (" + duration + "ms)";
             if (status >= 400 && status <= 499) {
-                log.error(msg);
-            } else if (status >= 500) {
                 log.warn(msg);
+            } else if (status >= 500) {
+                log.error(msg);
             } else {
                 log.info(msg);
             }
