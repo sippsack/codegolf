@@ -29,4 +29,10 @@ public class StaticResourceController {
     public String rules() {
         return "rules";
     }
+
+    @RequestMapping(value = "awards", method = RequestMethod.GET)
+    public String awards() {
+        return "awards";
+    }
+
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/master::head"></head>
+<body>
+
+<div th:replace="fragments/master::navbar"></div>
+
+<main>
+    <div class="container section">
+        <h4 th:text="#{awards.title}"></h4>
+        <p th:utext="#{awards.text}"></p>
+
+        <ul class="collection with-header awards">
+            <li class="collection-header">
+                <h5 th:text="#{awards.t1}"></h5>
+            </li>
+            <li class="collection-item avatar">
+                <a href="https://www.variobot.com/tinobo" target="_blank">
+                    <img src="/images/tinobo.jpg" title="Variobot Tinobo" class="circle"/>
+                </a>
+                <span th:text="#{awards.t1.title}" class="title"></span>
+                <p>&nbsp;</p>
+                <p th:utext="#{awards.t1.text}"></p>
+                <a href="http://www.bridging-it.de" target="_blank">
+                    <img src="/images/bit-logo.png" title="BridgingIT" style="width: 150px"/>
+                </a>
+            </li>
+
+            <li class="collection-header">
+                <h5 th:text="#{awards.t2}"></h5>
+            </li>
+            <li class="collection-item avatar">
+                <span th:text="#{awards.t2.title}" class="title"></span>
+                <p th:utext="#{awards.t2.text}"></p>
+            </li>
+
+            <li class="collection-header">
+                <h5 th:text="#{awards.t3}"></h5>
+            </li>
+            <li class="collection-item avatar">
+                <span th:text="#{awards.t3.title}" class="title"></span>
+                <p th:utext="#{awards.t3.text}"></p>
+            </li>
+
+        </ul>
+
+    </div>
+</main>
+
+<footer th:replace="fragments/master::footer"></footer>
+</body>
+</html>

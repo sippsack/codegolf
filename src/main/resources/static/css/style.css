@@ -67,3 +67,12 @@ img.gravatar {
     margin: auto;
     background-color: rgba(0, 0, 0, 0.2);
 }
+
+.collection.awards .collection-item.avatar {
+    padding-left: 230px;
+    min-height: 242px;
+}
+.collection.awards .collection-item.avatar .circle {
+    width: 200px;
+    height: 200px;
+}

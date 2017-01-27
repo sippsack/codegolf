@@ -16,6 +16,7 @@
             <a href="#!" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li th:class="${#httpServletRequest.getServletPath() == '/rules' ? 'active' : ''}"><a href="/rules" th:text="#{nav.rules}"></a></li>
+                <li th:class="${#httpServletRequest.getServletPath() == '/awards' ? 'active' : ''}"><a href="/awards" th:text="#{nav.awards}"></a></li>
                 <li th:class="${#httpServletRequest.getServletPath() == '/play' ? 'active' : ''}"><a href="/play" th:text="#{nav.play}"></a></li>
                 <li th:class="${#httpServletRequest.getServletPath() == '/results' ? 'active' : ''}"><a href="/results" th:text="#{nav.results}"></a></li>
                 <li th:if="${#httpServletRequest.userPrincipal}">
@@ -27,6 +28,7 @@
             </ul>
             <ul class="side-nav" id="mobile-nav">
                 <li><a href="/rules" th:text="#{nav.rules}"></a></li>
+                <li><a href="/awards" th:text="#{nav.awards}"></a></li>
                 <li><a href="/play" th:text="#{nav.play}"></a></li>
                 <li><a href="/results" th:text="#{nav.results}"></a></li>
                 <li th:if="${#httpServletRequest.userPrincipal}"><a href="/logout" th:text="${'Logout ' + #httpServletRequest.userPrincipal.name}"></a></li>
@@ -38,7 +40,7 @@
 <footer class="page-footer easternblue" th:fragment="footer">
     <div class="footer-copyright">
         <div class="container">
-            © 2016 Niko Köbler
+            <a class="grey-text text-lighten-4" href="http://www.n-k.de" target="_blank">© 2016 Niko Köbler</a>
             <a class="grey-text text-lighten-4 right" href="mailto:codegolf@n-k.de" th:text="#{nav.contact}"></a>
         </div>
     </div>

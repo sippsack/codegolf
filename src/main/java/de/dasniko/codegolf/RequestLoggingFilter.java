@@ -15,7 +15,8 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-        if (requestURI.startsWith("/webjars") || requestURI.startsWith("/css") || requestURI.startsWith("/js")) {
+        if (requestURI.startsWith("/webjars") || requestURI.startsWith("/css") || requestURI.startsWith("/js")
+                || requestURI.startsWith("/images")) {
             filterChain.doFilter(request, response);
         } else {
             long start = System.currentTimeMillis();
