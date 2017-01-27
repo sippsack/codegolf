@@ -8,7 +8,7 @@
 <main>
     <div class="container section">
         <h4 th:text="#{results.title}"></h4>
-        <p th:text="#{results.text}"></p>
+        <p th:utext="#{results.text}"></p>
         <ol class="collection">
             <li th:each="e : ${resultEntryList}" class="collection-item avatar">
                 <img th:src="${beans.Gravatar.imageUrlFrom(e.username)}" class="circle"/>
