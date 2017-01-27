@@ -28,13 +28,15 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
                 requestURI += "?" + request.getQueryString();
             }
             int status = response.getStatus();
-            String msg = status + " " + request.getMethod() + " " + requestURI + " (" + duration + "ms)";
+            String[] msg = {Integer.toString(status), request.getMethod(), requestURI,
+                    request.getHeader("x-forwarded-for"), request.getRemoteUser(), duration + "ms"};
+            String msgString = String.join(" ", msg);
             if (status >= 400 && status <= 499) {
-                log.warn(msg);
+                log.warn(msgString);
             } else if (status >= 500) {
-                log.error(msg);
+                log.error(msgString);
             } else {
-                log.info(msg);
+                log.info(msgString);
             }
         }
     }
