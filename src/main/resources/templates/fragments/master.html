@@ -25,6 +25,7 @@
                         <img class="circle responsive-img gravatar" th:src="${beans.Gravatar.imageUrl()}"/>
                     </a>
                 </li>
+                <li><a th:href="'?lang=' + #{nav.lang}" th:title="#{nav.lang.text}"><i class="material-icons">language</i></a></li>
             </ul>
             <ul class="side-nav" id="mobile-nav">
                 <li><a href="/rules" th:text="#{nav.rules}"></a></li>
@@ -32,6 +33,7 @@
                 <li><a href="/play" th:text="#{nav.play}"></a></li>
                 <li><a href="/results" th:text="#{nav.results}"></a></li>
                 <li th:if="${#httpServletRequest.userPrincipal}"><a href="/logout" th:text="${'Logout ' + #httpServletRequest.userPrincipal.name}"></a></li>
+                <li><a th:href="'?lang=' + #{nav.lang}" th:title="#{nav.lang.text}"><i class="material-icons">language</i></a></li>
             </ul>
         </div>
     </nav>
