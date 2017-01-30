@@ -29,7 +29,7 @@
                         <i class="material-icons" th:text="#{index.teaser2.icon}"></i>
                     </h2>
                     <h5 class="center" th:text="#{index.teaser2.title}"></h5>
-                    <p class="light" th:utext="#{index.teaser2.text}"></p>
+                    <p class="light" th:utext="#{index.teaser2.text(#{sponsor.link}, #{sponsor.name})}"></p>
                 </div>
             </div>
             <div class="col s12 m4">

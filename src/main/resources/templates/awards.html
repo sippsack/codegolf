@@ -20,9 +20,9 @@
                 </a>
                 <span th:text="#{awards.t1.title}" class="title"></span>
                 <p>&nbsp;</p>
-                <p th:utext="#{awards.t1.text}"></p>
-                <a href="http://www.bridging-it.de" target="_blank">
-                    <img src="/images/bit-logo.png" title="BridgingIT" style="width: 150px"/>
+                <p th:utext="#{awards.t1.text(#{sponsor.link}, #{sponsor.name})}"></p>
+                <a th:href="#{sponsor.link}" target="_blank">
+                    <img src="/images/bit-logo.png" th:title="#{sponsor.name}" style="width: 150px"/>
                 </a>
             </li>
 
